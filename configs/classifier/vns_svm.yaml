@@ -1,0 +1,32 @@
+### Training configuration for SVM classifier model for VNS data
+
+#Directories
+images_dir:
+metadata_csv: 
+intermediates_dir: 
+vqvae_checkpoint_path: '../../weights/vqvae.ckpt'
+
+#Universal Model parameters
+batch_size: 4
+num_workers: 10
+in_channels: 1
+out_channels: 1
+
+#Data loader parameters
+use_clinical: False
+use_train_transform: False
+preload: False
+image_dim: [176, 208, 176]
+outcome_col: 'outcome'
+use_2080_outcomes: True
+no_equal: False
+agreement_only: True
+
+#Training parameters and Logging
+patience: 50
+save_top_k: 10
+max_epochs: 5000
+wandb_logger_save_dir:
+wandb_logger_project:
+wandb_logger_entity: 
+log_model: false  

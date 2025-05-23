@@ -1,0 +1,69 @@
+### Training configuration for VQ-VAE model for healthy data
+
+#Directories
+images_dir: 
+metadata_csv: 
+intermediates_dir:
+
+#Model parameters
+batch_size: 4
+num_workers: 10
+in_channels: 1
+out_channels: 1
+image_dim: [176, 208, 176]
+num_embeddings: 2048
+embedding_dim: 32
+channels: [128, 128, 256, 256]
+downsample_parameters:
+  - [2, 4, 1, 1]
+  - [2, 4, 1, 1]
+  - [2, 4, 1, 1]
+  - [2, 4, 1, 1]
+upsample_parameters:
+  - [2, 4, 1, 1, 0]
+  - [2, 4, 1, 1, 0]
+  - [2, 4, 1, 1, 0]
+  - [2, 4, 1, 1, 0]
+lr: 1e-5s
+num_res_layers: 3
+num_res_channels: [128, 128, 256, 256]
+commitment_cost: 0.25
+vqvae_decay: 0.99
+replace_quantizer: False
+
+#Recon Loss definitions
+use_gradnorm: True
+pix_loss_grad_weight: 0.1
+fft_loss_grad_weight: 0.5
+percep_loss_grad_weight: 1.0
+quant_loss_grad_weight: 1.0
+perceptual_network_type: 'alex'
+perceptual_fake_3d: True
+grad_norm_quant: True
+
+#Data loader parameters
+use_clinical: False
+use_train_transform: False
+preload: False
+
+#Adversarial loss parameters
+disc_lr: 1e-5
+adv_weight: 1
+discriminator_train_start_epoch: 0
+adversarial_loss_start_epoch: 0
+train_disc_every_n_batches: 1
+disc_spatial_dims: 3
+disc_in_channels: 1
+disc_channels: 64
+disc_num_layers_d: 4
+adv_epoch_weighting_denominator: 100
+adv_loss_grad_weight: 1.0
+
+#Training parameters and Logging
+patience: 500
+save_top_k: 10
+max_epochs: 5000
+wandb_logger_save_dir: 
+wandb_logger_project: 
+wandb_logger_entity: 
+log_model: false  
