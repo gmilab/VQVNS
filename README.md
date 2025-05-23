@@ -118,9 +118,11 @@ python training/train_vqvae.py --config configs/vqvae/vqvae_healthy_gradnorm_hpc
 - Checkpoint and intermediate file locations are specified in the config file. 
 
 ## Using the Trained VQ-VAE
+Download weights file [here](https://utoronto-my.sharepoint.com/:u:/g/personal/h_suresh_mail_utoronto_ca/Ed8sZqTEh0tKtdi39W3jPUwB9Onz8im11893As9kHBonTQ?e=gXlGef)
 - To evaluate or reconstruct using a trained VQ-VAE:
   ```bash
 python evaluation/eval_vqvae.py --config configs/vqvae/vqvae_healthy_gradnorm_hpc.yaml --checkpoint weights/vqvae.ckpt
+
 ```
 - To evaluate reconstruction fidelity:
   ```bash
