@@ -39,15 +39,15 @@ This repository provides a framework for predictive modeling of VNS (Vagus Nerve
 
 ## Setup & Installation
 1. **Clone the repository**
-   ```bash
+ ```bash
    git clone <repo_url>
    cd VQVNS
-   ```
+ ```
 2. **Install dependencies using uv and pyproject.toml**
   Install all dependencies directly from `pyproject.toml`:
-   ```bash
+ ```bash
    uv pip install -r pyproject.toml
-   ```
+ ```
    > **Note:** [uv](https://github.com/astral-sh/uv) is a fast Python package installer. Install it with `pip install uv` if not already available.
 
 ## Data Preparation
@@ -112,7 +112,7 @@ python preprocessing/post_hpc_processing.py
 1. **Configure training**
    - Edit or use an existing config in `configs/vqvae/` (e.g., `vqvae_healthy_gradnorm_hpc.yaml`).
 2. **Start training**
-   ```bash
+```bash
 python training/train_vqvae.py --config configs/vqvae/vqvae_healthy_gradnorm_hpc.yaml
 ```
 - Checkpoint and intermediate file locations are specified in the config file. 
@@ -133,14 +133,14 @@ python evaluation/eval_recon_fidelity.py --config configs/vqvae/vqvae_healthy_gr
 1. **Configure training**
    - Edit or use an existing config in `configs/classifier/` (e.g., `vns_svm.yaml`).
 2. **Start training**
-   ```bash
+```bash
 python training/train_svm_classifier.py --config configs/classifier/vns_svm.yaml
 ```
    - The classifier will be trained on VQ-VAE latent codes or other features as specified.
 
 ## Evaluating & Using the SVM
 - To evaluate the SVM classifier:
-  ```bash
+```bash
 python evaluation/eval_svm.py --config configs/classifier/vns_svm.yaml
 ```
 - Adjust the config file to point to the correct feature and label files as needed.
