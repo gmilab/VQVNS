@@ -2,7 +2,7 @@
 
 **This is the official code repository for the project:**
 
-**Predicting Response to Vagus Nerve Stimulation Using Deep Representation Learning**  
+**A Deep Representation Learning Model to Predict Response to Vagus Nerve Stimulation**  
 Hrishikesh Suresh MD, *et al.*, George M Ibrahim MD PhD FRCSC
 
 VQ-VAE based predictive modelling of VNS Response
