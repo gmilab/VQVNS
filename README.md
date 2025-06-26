@@ -71,6 +71,7 @@ The local preprocessing pipeline is intended to be run locally
     --mni_template path/to/MNI152_T1_1mm_brain.nii.gz
   ```
 - Ensure you have FSL v6 installed to access the required MNI template.
+- Freesurfer is also required for resampling aspects of preprocessing
 
 ---
 
