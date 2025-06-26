@@ -56,7 +56,7 @@ This repository provides a framework for predictive modeling of VNS (Vagus Nerve
 
 The local preprocessing pipeline is intended to be run locally
 
-### 1. Run Preprocessing Locally (Skip HPC Script if Processing Locally)
+### 1. Run Preprocessing Locally
 
 - Use the `utils/preprocessing/generic_t1_preprocess.py` script to preprocess your MRI data.
 - Specify the following when running the script:
