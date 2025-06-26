@@ -14,13 +14,13 @@ VQ-VAE based predictive modelling of VNS Response
 - [Repository Structure](#repository-structure)
 - [Setup & Installation](#setup--installation)
 - [Data Preparation](#data-preparation)
+- [Single Subject Inference](#single-subject-inference)
 - [Training the VQ-VAE](#training-the-vq-vae)
 - [Using the Trained VQ-VAE](#using-the-trained-vq-vae)
 - [Training the SVM Classifier](#training-the-svm-classifier)
 - [Evaluating & Using the SVM](#evaluating--using-the-svm)
 - [Utilities & Preprocessing](#utilities--preprocessing)
 - [Weights & Checkpoints](#weights--checkpoints)
-- [Single Subject Inference](#single-subject-inference)
 
 ---
 
