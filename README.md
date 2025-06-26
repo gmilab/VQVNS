@@ -74,13 +74,18 @@ The local preprocessing pipeline is intended to be run locally
 
 ---
 
-> **Note:** All downstream training and inference scripts expect preprocessed and cropped MRI files as input. Do not use raw MRI data directly.
+>[!NOTE]
+> All downstream training and inference scripts expect preprocessed and cropped MRI files as input. Do not use raw MRI data directly.
 
 ## Single Subject Inference
-To run inference on a single subject using a preprocessed and cropped MRI, use the `infer_single_subject.py` script. **The input MRI must be processed with the provided pipeline and should be the cropped output.**
-Download weights file [here](https://utoronto-my.sharepoint.com/:u:/g/personal/h_suresh_mail_utoronto_ca/Ed8sZqTEh0tKtdi39W3jPUwBXRjEWr079Ouiq98R8edgAw?e=UPQGbS)
+To run inference on a single subject using a preprocessed and cropped MRI, use the `infer_single_subject.py` script. 
+
+**The input MRI must be processed with the provided pipeline and should be the cropped output.**
+
+Download weights file [here](https://utoronto-my.sharepoint.com/:u:/g/personal/h_suresh_mail_utoronto_ca/Ed8sZqTEh0tKtdi39W3jPUwBXRjEWr079Ouiq98R8edgAw?e=UPQGbS).
 Please open an issue if link does not work as OneDrive links expire every 30 days. 
 
+>[!WARNING]
 > We are unable to provide images to test against as confidential patient data cannot be shared. 
 
 Example usage:
@@ -94,6 +99,7 @@ python infer_single_subject.py \
 - The script will automatically pad or crop the MRI to 176x208x176 if needed.
 - The output will be a prediction for the subject.
 
+>[!NOTE]
 > Ensure your input MRI is preprocessed and cropped using the project's pipeline before running inference.
 
 ---
