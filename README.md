@@ -81,6 +81,8 @@ To run inference on a single subject using a preprocessed and cropped MRI, use t
 Download weights file [here](https://utoronto-my.sharepoint.com/:u:/g/personal/h_suresh_mail_utoronto_ca/Ed8sZqTEh0tKtdi39W3jPUwBXRjEWr079Ouiq98R8edgAw?e=UPQGbS)
 Please open an issue if link does not work as OneDrive links expire every 30 days. 
 
+> We are unable to provide images to test against as confidential patient data cannot be shared. 
+
 Example usage:
 ```bash
 python infer_single_subject.py \
