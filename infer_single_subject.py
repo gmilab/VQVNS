@@ -4,47 +4,26 @@ import torch
 import pickle
 import nibabel as nib
 from models.vqvae import BrainVQVAE
-
-#Suppres future warnings
-import warnings
-warnings.filterwarnings("ignore")
-
-#Add some colour to the print statements
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+import monai.transforms as transforms
 
 
 def load_mri(mri_path, pad_shape=(176, 208, 176)):
     """Load and preprocess a single MRI file, padding if needed."""
-    img = nib.load(mri_path)
-    data = img.get_fdata().astype(np.float32)
-    # Pad to pad_shape if needed
-    pad_width = [(0, max(0, p - s)) for s, p in zip(data.shape, pad_shape)]
-    if any(pw[1] > 0 for pw in pad_width):
-        data = np.pad(data, pad_width, mode='constant')
-    # Crop if larger than pad_shape
-    data = data[:pad_shape[0], :pad_shape[1], :pad_shape[2]]
-    # Add batch and channel dimensions if needed
-    if data.ndim == 3:
-        data = data[None, None, ...]  # shape: (1, 1, D, H, W)
-    elif data.ndim == 4:
-        data = data[None, ...]        # shape: (1, C, D, H, W)
-    return torch.from_numpy(data)
-
-
+    img = nib.load(mri_path) 
+    data = img.get_fdata()
+    data = torch.tensor(data, dtype=torch.float32).unsqueeze(0)
+    transform = transforms.Compose([
+                                # Crop or pad to match the expected dimensions (using self.crop_or_pad_dim)
+                                transforms.SpatialPad(spatial_size=pad_shape)])
+    data = transform(data)
+    return data.unsqueeze(0)  # Add batch dimension (B, C, D, H, W)
+    
 def run_vqvae(model: BrainVQVAE, x, device):
     model.eval()
     with torch.no_grad():
         x = x.to(device)
-        quantized = model.encode_and_quantize(x)
+        encoded = model.encode(x)
+        quantized = model.quantize(encoded)[0]
         flat_latent = torch.mean(quantized, dim=(2, 3, 4))  # shape: (B, C)
         flat_latent = flat_latent.view(flat_latent.size(0), -1)  # flatten the latent space
         return flat_latent.cpu().numpy()  # convert to numpy array
@@ -54,18 +33,14 @@ def main(vqvae_checkpoint, svm_weights, features_to_keep, mri):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # Load VQ-VAE model
-    print(f"Loading VQ-VAE model...")
     vqvae = BrainVQVAE.load_from_checkpoint(vqvae_checkpoint, map_location=device)
     vqvae = vqvae.to(device)
 
     # Load SVM and features
-    print(f"Loading SVM model and features...")
-    with open(svm_weights, 'rb') as f:
-        svm = pickle.load(f)
+    svm = pickle.load(open(svm_weights, 'rb'))
     features_to_keep = np.load(features_to_keep)
 
     # Load and preprocess MRI
-    print(f"Loading and preprocessing MRI...")
     x = load_mri(mri)
 
     # Pass through VQ-VAE to get latent features
@@ -75,12 +50,12 @@ def main(vqvae_checkpoint, svm_weights, features_to_keep, mri):
     latents_selected = latents[:, features_to_keep]
 
     # Predict with SVM
-    print(f"Predicting...")
     pred = svm.predict(latents_selected)
     if pred == 1:
-        print(f"{bcolors.OKGREEN}Prediction: Responder{bcolors.ENDC}")
+        print("Prediction: Responder")
     else:
-        print(f"{bcolors.FAIL}Prediction: Non-responder{bcolors.ENDC}")
+        print("Prediction: Non-responder")
+
 
 
 if __name__ == "__main__":
