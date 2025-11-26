@@ -11,6 +11,7 @@ VQ-VAE based predictive modelling of VNS Response
 
 ## Table of Contents
 - [Overview](#overview)
+- [Demo] (#demo)
 - [Repository Structure](#repository-structure)
 - [Setup & Installation](#setup--installation)
 - [Data Preparation](#data-preparation)
@@ -26,6 +27,11 @@ VQ-VAE based predictive modelling of VNS Response
 
 ## Overview
 This repository provides a framework for predictive modeling of VNS (Vagus Nerve Stimulation) response using a Vector Quantized Variational Autoencoder (VQ-VAE) and an SVM classifier. It includes scripts for data preprocessing, model training, evaluation, and utilities for MRI intensity normalization.
+
+## Demo
+To run a demo of the inference pipeline, please see the demo jupyter notebook under the demo folder. All instruction to run the notebook are inside the notebook file. 
+
+## Everything below is only for detailed use of the pipeline and is not required for the demo
 
 ## Repository Structure
 - `configs/` — YAML configuration files for VQ-VAE and SVM training/evaluation
@@ -77,9 +83,6 @@ The local preprocessing pipeline is intended to be run locally
 
 >[!NOTE]
 > All downstream training and inference scripts expect preprocessed and cropped MRI files as input. Do not use raw MRI data directly.
-
-## Single Subject Inference
-To run inference on a single subject using a preprocessed and cropped MRI, use the `infer_single_subject.py` script. 
 
 **The input MRI must be processed with the provided pipeline and should be the cropped output.**
 

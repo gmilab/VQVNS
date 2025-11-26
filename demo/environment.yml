@@ -1,0 +1,54 @@
+name: vqvns
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Core interpreter
+  - python=3.12
+
+  # Neuroimaging + math stack
+  - nibabel>=5.2
+  - numpy>=1.26
+  - scipy>=1.13
+  - matplotlib>=3.9
+  - pandas>=2.2
+  - scikit-image
+  - h5py
+  - tqdm
+
+  # Machine learning
+  - scikit-learn=1.7.2   
+  - pytorch>=2.4
+  - torchvision
+  - torchaudio
+  - lightning=2.4.*        # PyTorch Lightning with save_hyperparameters fix
+  - monai=1.5.1               # Medical Open Network for AI (used for VQ-VAE, PatchGAN, etc.)
+  - lpips=0.1.4               # Learned Perceptual Image Patch Similarity
+  - wandb=0.22.3
+
+  # ANTs (CLI binaries) + ANTsPy (Python)
+  - ants                      # from bioconda: provides antsRegistration, antsApplyTransforms, etc.
+  - antspyx                   # Python API: import ants
+
+  # Model and data management
+  - pydantic=2.8.*         # v2-compatible, resolves repr/frozen warnings
+  - typer
+  - pyyaml
+  - jsonschema
+
+  # Visualization / notebook tools
+  - ipykernel
+  - jupyterlab
+  - seaborn
+
+  # System / subprocess helpers
+  - psutil
+  - rich
+  - pip
+
+  # Pip-only packages 
+  - pip:
+      - intensity-normalization==2.2.4
+      - nilearn
+      - SimpleITK
+      - opencv-python-headless
