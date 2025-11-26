@@ -86,7 +86,7 @@ The local preprocessing pipeline is intended to be run locally
 
 **The input MRI must be processed with the provided pipeline and should be the cropped output.**
 
-Download weights file [here](https://utoronto-my.sharepoint.com/:u:/g/personal/h_suresh_mail_utoronto_ca/Ed8sZqTEh0tKtdi39W3jPUwBXRjEWr079Ouiq98R8edgAw?e=UPQGbS).
+Download weights file [here](https://huggingface.co/hsuresh/vqvns).
 Please open an issue if link does not work as OneDrive links expire every 30 days. 
 
 >[!WARNING]
